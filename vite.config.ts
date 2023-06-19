@@ -9,6 +9,7 @@ export default defineConfig({
     alias: [
       { find: 'abis', replacement: path.resolve(__dirname, 'src/abis') },
       { find: 'components', replacement: path.resolve(__dirname, 'src/components') },
+      { find: 'config', replacement: path.resolve(__dirname, 'src/config') },
       { find: 'contexts', replacement: path.resolve(__dirname, 'src/contexts') },
       { find: 'hooks', replacement: path.resolve(__dirname, 'src/hooks') },
       { find: 'styles', replacement: path.resolve(__dirname, 'src/styles') },

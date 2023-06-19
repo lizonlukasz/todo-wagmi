@@ -4,13 +4,13 @@ import {
   useContractWrite, useNetwork, useWaitForTransaction,
 } from 'wagmi';
 import { todoListContractAbi as abi } from 'abis';
-
-const TODO_CONTRACT_ADDRESS = '0xcc63fc46bd3b5b093448e9be557b563cef68346e'; // New from ChatGPT
+import { getTodoContractAddress } from 'config/todoContract';
 
 export const useTodoListContract = () => {
   const [error, setError] = useState<Error | null>(null);
   const { chain } = useNetwork();
   const { address } = useAccount();
+  const contractAddress = getTodoContractAddress(chain);
 
   const {
     data: taskList,
@@ -18,7 +18,7 @@ export const useTodoListContract = () => {
     isLoading: taskListLoading,
     isSuccess: taskListSuccess,
   } = useContractRead({
-    address: TODO_CONTRACT_ADDRESS,
+    address: contractAddress,
     abi,
     functionName: 'getTodoList',
     args: [address!],
@@ -28,7 +28,7 @@ export const useTodoListContract = () => {
     data: createTaskData,
     write: writeCreateTask,
   } = useContractWrite({
-    address: TODO_CONTRACT_ADDRESS,
+    address: contractAddress,
     abi,
     functionName: 'addTask',
     onError: setError,
@@ -46,7 +46,7 @@ export const useTodoListContract = () => {
     data: completeTaskData,
     write: writeToggleCompleted,
   } = useContractWrite({
-    address: TODO_CONTRACT_ADDRESS,
+    address: contractAddress,
     abi,
     functionName: 'markTaskCompleted',
     onError: setError,

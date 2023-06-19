@@ -8,7 +8,7 @@ import TextField from '@mui/material/TextField';
 import {
   Box, Snackbar, Alert, Checkbox,
 } from '@mui/material';
-import { useTodoListContract } from './useTodoListContract';
+import { useTodoListContract } from 'hooks';
 
 interface HomeProps {
   children?: ReactNode;
